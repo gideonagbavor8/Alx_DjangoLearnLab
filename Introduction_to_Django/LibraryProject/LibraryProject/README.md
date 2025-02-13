@@ -1,3 +1,3 @@
 # LibraryProject
 
-This is a Django project for managing a library system.
+This is Django project for Library System.
