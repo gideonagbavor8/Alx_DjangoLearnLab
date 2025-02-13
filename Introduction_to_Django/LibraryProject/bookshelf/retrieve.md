@@ -3,7 +3,7 @@
 
 **Command:**
 ```python
-all_books = Book.objects.all()
+all_books = Book.objects.get()
 for b in all_books:
     print(b.title, b.author, b.publication_year)
 
