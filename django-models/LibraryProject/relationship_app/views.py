@@ -1,13 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from .models import Book
 
 def list_books(request):
     books = Book.objects.all()
-    response_html = "<h1>Books Available:</h1><ul>"
-    for book in books:
-        response_html += f"<li>{book.title} by {book.author.name}</li>"
-    response_html += "</ul>"
-    return HttpResponse(response_html)
+    return render(request, 'relationship_app/list_books.html', {'books': books})
 
 
 from django.views.generic.detail import DetailView
@@ -15,5 +11,5 @@ from .models import Library
 
 class LibraryDetailView(DetailView):
     model = Library
-    template_name = 'library_detail.html'
+    template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
