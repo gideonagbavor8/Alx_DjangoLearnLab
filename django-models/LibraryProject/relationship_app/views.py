@@ -2,7 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required
 from .models import Book
 from .forms import BookForm
-
+from django.views.generic.detail import DetailView
+from .models import Library
+from django.contrib.auth import views as auth_views
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
 
 
 def list_books(request):
@@ -10,8 +17,7 @@ def list_books(request):
     return render(request, 'relationship_app/list_books.html', {'books': books})
 
 
-from django.views.generic.detail import DetailView
-from .models import Library
+
 
 class LibraryDetailView(DetailView):
     model = Library
@@ -24,7 +30,7 @@ def home(request):
     return render(request, 'relationship_app/home.html')
 
 
-from django.contrib.auth import views as auth_views
+
 
 class CustomLoginView(auth_views.LoginView):
     template_name = 'login.html'
@@ -34,9 +40,7 @@ class CustomLogoutView(auth_views.LogoutView):
     template_name = 'logout.html'
 
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+
 
 def register(request):
     if request.method == 'POST':
@@ -51,8 +55,7 @@ def register(request):
 
 
 
-from django.shortcuts import render
-from django.contrib.auth.decorators import user_passes_test
+
 
 def is_admin(user):
     return user.userprofile.role == 'Admin'
