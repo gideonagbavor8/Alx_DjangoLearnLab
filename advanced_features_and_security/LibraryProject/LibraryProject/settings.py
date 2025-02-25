@@ -52,6 +52,9 @@ X_FRAME_OPTIONS = 'DENY'  # Prevent the site from being framed to protect agains
 SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent browsers from MIME-sniffing a response away from the declared content-type
 SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filtering and help prevent cross-site scripting attacks
 
+# Proxy SSL header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Ensure Django knows it's behind a proxy that handles SSL termination
+
 # Content Security Policy (CSP)
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", 'https://fonts.googleapis.com')
