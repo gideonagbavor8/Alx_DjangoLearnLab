@@ -30,11 +30,27 @@ ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['yourdomain.com']
 
 # Security settings
+SECURE_SSL_REDIRECT = True  # Redirect all non-HTTPS requests to HTTPS
+SECURE_HSTS_SECONDS = 31536000  # Instruct browsers to only access the site via HTTPS for one year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Include all subdomains in the HSTS policy
+SECURE_HSTS_PRELOAD = True  # Allow preloading of the HSTS policy
+
+# Secure cookies
+SESSION_COOKIE_SECURE = True  # Ensure session cookies are only transmitted over HTTPS
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only transmitted over HTTPS
+
+
+# Security settings
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+# Secure headers
+X_FRAME_OPTIONS = 'DENY'  # Prevent the site from being framed to protect against clickjacking
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent browsers from MIME-sniffing a response away from the declared content-type
+SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filtering and help prevent cross-site scripting attacks
 
 # Content Security Policy (CSP)
 CSP_DEFAULT_SRC = ("'self'",)
