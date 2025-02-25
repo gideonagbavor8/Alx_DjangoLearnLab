@@ -48,12 +48,3 @@ def form_example(request):
     else:
         form = ExampleForm()
     return render(request, 'bookshelf/form_example.html', {'form': form})
-
-
-from django import forms
-from .models import Book
-
-class BookForm(forms.ModelForm):
-    class Meta:
-        model = Book
-        fields = ['title', 'author', 'publication_year']
