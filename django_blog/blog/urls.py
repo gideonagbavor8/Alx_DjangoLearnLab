@@ -34,3 +34,10 @@ urlpatterns = [
     path('comments/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]
 
+from .views import CommentCreateView
+
+urlpatterns += [
+    path('posts/<int:post_id>/comments/new/', CommentCreateView.as_view(), name='comment-create'),
+]
+
+
