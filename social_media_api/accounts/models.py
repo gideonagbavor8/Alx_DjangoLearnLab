@@ -4,12 +4,23 @@ from django.db import models
 class CustomUser(AbstractUser):
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
+
+    # Users following this user
     followers = models.ManyToManyField(
-    'self',
-    symmetrical=False,
-    related_name='following',
-    blank=True  # Allow this field to be empty
-)
+        'self',
+        symmetrical=False,
+        related_name='user_following',
+        blank=True
+    )
+
+    # Users this user is following
+    following = models.ManyToManyField(
+        'self',
+        symmetrical=False,
+        related_name='user_followers',
+        blank=True
+    )
+
     
     groups = models.ManyToManyField(
         'auth.Group',
