@@ -53,24 +53,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog.urls'
 
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# filepath: f:\Alx_DjangoLearnLab\django_blog\django_blog\settings.py
+from pathlib import Path
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 
 WSGI_APPLICATION = 'django_blog.wsgi.application'
 
@@ -134,9 +123,20 @@ STATICFILES_DIRS = [
 
 TEMPLATES = [
     {
-        'DIRS': [BASE_DIR / 'templates'],
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # Correct backend
+        'DIRS': [BASE_DIR / 'templates'],  # Your templates directory
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
     },
 ]
+
 
 
 
